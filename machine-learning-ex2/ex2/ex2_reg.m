@@ -106,8 +106,9 @@ pause;
 % Initialize fitting parameters
 initial_theta = zeros(size(X, 2), 1);
 
+for lambda = [0,1,10,100],
 % Set regularization parameter lambda to 1 (you should vary this)
-lambda = 1;
+% lambda = 10;
 
 % Set Options
 options = optimset('GradObj', 'on', 'MaxIter', 400);
@@ -132,5 +133,6 @@ hold off;
 p = predict(theta, X);
 
 fprintf('Train Accuracy: %f\n', mean(double(p == y)) * 100);
-fprintf('Expected accuracy (with lambda = 1): 83.1 (approx)\n');
+fprintf('Expected accuracy (with lambda = %d): 83.1 (approx)\n', lambda);
 
+end;
