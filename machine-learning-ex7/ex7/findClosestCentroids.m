@@ -21,11 +21,17 @@ idx = zeros(size(X,1), 1);
 % Note: You can use a for-loop over the examples to compute this.
 %
 
-
-
-
-
-
+for i=1:size(X,1),
+	minLen = (X(i,:)-centroids(1,:))*(X(i,:)-centroids(1,:))';
+	idx(i) = 1;
+	for j=2:K,
+		tmpLen = (X(i,:)-centroids(j,:))*(X(i,:)-centroids(j,:))';
+		if tmpLen<minLen,
+			minLen = tmpLen;
+			idx(i) = j;
+		end;
+	end;
+end;
 
 % =============================================================
 
